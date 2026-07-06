@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Search, Pencil, Trash2 } from 'lucide-react';
+import { Plus, Search, Pencil, Trash2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { getProducts, deleteProduct } from '../features/product/productApi';
@@ -130,8 +130,10 @@ const Products = () => {
           <TableBody>
             {isLoading ? (
               <TableRow>
-                <TableCell colSpan={isEmployee ? 6 : 7} className="h-24 text-center">
-                  Loading products...
+                <TableCell colSpan={isEmployee ? 6 : 7} className="h-24">
+                  <div className="flex justify-center items-center">
+                    <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                  </div>
                 </TableCell>
               </TableRow>
             ) : isError ? (

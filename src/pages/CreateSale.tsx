@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '../compone
 import { Button } from '../components/ui/button';
 import { Combobox } from '../components/ui/combobox';
 import { Input } from '../components/ui/input';
-import { Trash2, Plus, ArrowLeft, Save } from 'lucide-react';
+import { Trash2, Plus, ArrowLeft, Save, Loader2 } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -289,7 +289,11 @@ const CreateSale = () => {
             onClick={handleSubmit}
             disabled={mutation.isPending}
           >
-            {mutation.isPending ? 'Processing...' : (
+            {mutation.isPending ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Processing...
+              </>
+            ) : (
               <>
                 <Save className="w-4 h-4 mr-2" /> Complete Sale
               </>

@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon, Loader2 } from 'lucide-react';
 
 import { createProduct, getProduct, updateProduct } from '../features/product/productApi';
 
@@ -144,7 +144,11 @@ const ProductForm = () => {
   };
 
   if (isEdit && isLoadingProduct) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-64">
+        <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
+      </div>
+    );
   }
 
   return (
@@ -292,7 +296,13 @@ const ProductForm = () => {
               Cancel
             </Button>
             <Button type="submit" disabled={mutation.isPending}>
-              {mutation.isPending ? 'Saving...' : 'Save Product'}
+              {mutation.isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Saving...
+                </>
+              ) : (
+                'Save Product'
+              )}
             </Button>
           </div>
         </form>

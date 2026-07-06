@@ -9,6 +9,7 @@ import Products from '../pages/Products';
 import ProductForm from '../pages/ProductForm';
 import Sales from '../pages/Sales';
 import CreateSale from '@/pages/CreateSale';
+import NotFound from '../pages/NotFound';
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ export const router = createBrowserRouter([
           },
           {
             path: 'dashboard',
-            element: <Dashboard />,
+            element: (
+              <RoleRoute allowedRoles={['admin', 'manager']}>
+                <Dashboard />
+              </RoleRoute>
+            ),
           },
           {
             path: 'products',
@@ -81,6 +86,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Navigate to="/dashboard" replace />,
+    element: <NotFound />,
   },
 ]);

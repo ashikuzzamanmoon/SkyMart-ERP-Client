@@ -1,32 +1,58 @@
-# React + TypeScript + Vite
+# SkyMart ERP - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+SkyMart ERP is a comprehensive Enterprise Resource Planning (ERP) web application designed to streamline business operations. The frontend provides a modern, intuitive, and responsive dashboard that empowers users to manage inventory, process sales, and monitor business analytics. 
 
-Currently, two official plugins are available:
+It features a robust **Role-Based Access Control (RBAC)** system, ensuring that Admins, Managers, and Employees have tailored access to specific modules (Dashboard, Products, Sales) based on their organizational permissions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+This project is built using modern web development standards to ensure high performance, maintainability, and an excellent user experience.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework:** React 19 + Vite
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + Shadcn UI (Radix UI primitives)
+- **State Management & Data Fetching:** TanStack Query (React Query)
+- **Routing:** React Router v7
+- **Forms & Validation:** React Hook Form + Zod
+- **Icons:** Lucide React
+- **HTTP Client:** Axios
+- **Notifications:** Sonner
 
-## Expanding the Oxlint configuration
+## Environment Variables
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+To run this project locally, you need to configure the required environment variables. Create a `.env` file in the root directory of the frontend project and add the following:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+| Variable | Description | Example Value |
+| :--- | :--- | :--- |
+| `VITE_API_URL` | The base URL for the backend API | `http://localhost:5000/api` |
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Local Setup & Installation
+
+Follow these steps to get the frontend application running on your local machine:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/skymart-erp-client.git
+   cd skymart-erp-client
+   ```
+
+2. **Install dependencies:**
+   Make sure you have [Node.js](https://nodejs.org/) installed, then run:
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables:**
+   Create a `.env` file in the root directory and add the `VITE_API_URL` as shown in the section above.
+
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open the application:**
+   Open your browser and navigate to `http://localhost:5173` to access the SkyMart ERP dashboard.
+
+---
+
+

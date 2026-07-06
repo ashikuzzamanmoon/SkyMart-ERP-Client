@@ -7,6 +7,8 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import Dashboard from '../pages/Dashboard';
 import Products from '../pages/Products';
 import ProductForm from '../pages/ProductForm';
+import Sales from '../pages/Sales';
+import CreateSale from '@/pages/CreateSale';
 
 export const router = createBrowserRouter([
   {
@@ -61,7 +63,7 @@ export const router = createBrowserRouter([
             path: 'sales',
             element: (
               <RoleRoute allowedRoles={['admin', 'manager', 'employee']}>
-                <div>Sales List Coming Soon</div>
+                <Sales />
               </RoleRoute>
             ),
           },
@@ -69,7 +71,7 @@ export const router = createBrowserRouter([
             path: 'sales/new',
             element: (
               <RoleRoute allowedRoles={['admin', 'manager', 'employee']}>
-                <div>Add Sale Coming Soon</div>
+                <CreateSale />
               </RoleRoute>
             ),
           },

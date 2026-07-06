@@ -34,7 +34,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../components/ui/dialog';
-import { Pagination } from '../components/ui/pagination'; // Assuming Pagination is configured properly
+
 
 const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Accessories', 'Home & Garden', 'Others'];
 

@@ -4,6 +4,7 @@ import Unauthorized from '../pages/Unauthorized';
 import ProtectedRoute from './ProtectedRoute';
 import RoleRoute from './RoleRoute';
 import DashboardLayout from '../components/layout/DashboardLayout';
+import Dashboard from '../pages/Dashboard';
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'dashboard',
-            element: <div>Dashboard Content Coming Soon</div>,
+            element: <Dashboard />,
           },
           {
             path: 'products',

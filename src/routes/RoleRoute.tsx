@@ -1,13 +1,15 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import type { ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import type { UserRole } from '../context/AuthContext';
 import { toast } from 'sonner';
 
 interface RoleRouteProps {
   allowedRoles: UserRole[];
+  children: ReactNode;
 }
 
-const RoleRoute = ({ allowedRoles }: RoleRouteProps) => {
+const RoleRoute = ({ allowedRoles, children }: RoleRouteProps) => {
   const { user } = useAuth();
 
   if (!user) {
@@ -19,7 +21,7 @@ const RoleRoute = ({ allowedRoles }: RoleRouteProps) => {
     return <Navigate to="/unauthorized" replace />;
   }
 
-  return <Outlet />;
+  return <>{children}</>;
 };
 
 export default RoleRoute;

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDashboardStats } from '../features/dashboard/dashboardApi';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Package, Users, ShoppingCart, DollarSign, AlertTriangle } from 'lucide-react';
+import { Package, Users, ShoppingCart, Banknote, AlertTriangle } from 'lucide-react';
 import { Badge } from '../components/ui/badge';
 import {
   Table,
@@ -11,12 +11,31 @@ import {
   TableHeader,
   TableRow,
 } from '../components/ui/table';
+import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const isEmployee = user?.role === 'employee';
+
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['dashboardStats'],
     queryFn: getDashboardStats,
+    enabled: !isEmployee,
   });
+
+  if (isEmployee) {
+    return (
+      <div className="space-y-6">
+        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+        <Card>
+          <CardContent className="pt-6">
+            <h3 className="text-2xl font-semibold mb-2">Welcome to SkyMart ERP, {user?.name}!</h3>
+            <p className="text-gray-600">You are logged in as an Employee. Use the sidebar to navigate to your accessible modules.</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -87,11 +106,11 @@ const Dashboard = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground text-amber-500" />
+            <Banknote className="h-4 w-4 text-muted-foreground text-amber-500" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${stats?.totalRevenue?.toFixed(2) || '0.00'}
+              ৳{stats?.totalRevenue?.toFixed(2) || '0.00'}
             </div>
           </CardContent>
         </Card>

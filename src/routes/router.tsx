@@ -5,6 +5,8 @@ import ProtectedRoute from './ProtectedRoute';
 import RoleRoute from './RoleRoute';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import Dashboard from '../pages/Dashboard';
+import Products from '../pages/Products';
+import ProductForm from '../pages/ProductForm';
 
 export const router = createBrowserRouter([
   {
@@ -34,8 +36,8 @@ export const router = createBrowserRouter([
           {
             path: 'products',
             element: (
-              <RoleRoute allowedRoles={['admin', 'manager']}>
-                <div>Products List Coming Soon</div>
+              <RoleRoute allowedRoles={['admin', 'manager', 'employee']}>
+                <Products />
               </RoleRoute>
             ),
           },
@@ -43,7 +45,7 @@ export const router = createBrowserRouter([
             path: 'products/new',
             element: (
               <RoleRoute allowedRoles={['admin', 'manager']}>
-                <div>Add Product Coming Soon</div>
+                <ProductForm />
               </RoleRoute>
             ),
           },
@@ -51,7 +53,7 @@ export const router = createBrowserRouter([
             path: 'products/:id/edit',
             element: (
               <RoleRoute allowedRoles={['admin', 'manager']}>
-                <div>Edit Product Coming Soon</div>
+                <ProductForm />
               </RoleRoute>
             ),
           },

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { getMe } from '../features/auth/authApi';
 
 export type UserRole = 'admin' | 'manager' | 'employee';

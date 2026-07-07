@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { Image as ImageIcon, Loader2 } from 'lucide-react';
 
 import { createProduct, getProduct, updateProduct } from '../features/product/productApi';
+import { SERVER_URL } from '../lib/axios';
 
 import { Button } from '../components/ui/button';
 import {
@@ -83,7 +84,7 @@ const ProductForm = () => {
         setPreviewImage(
           productData.image.startsWith('http')
             ? productData.image
-            : `http://localhost:5000${productData.image}`
+            : `${SERVER_URL}${productData.image}`
         );
       }
     }

@@ -1,7 +1,13 @@
 import axios from 'axios';
 
+// The API base URL from env, defaults to local API
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+// For images/static assets, we need the server root (remove trailing /api)
+export const SERVER_URL = API_BASE_URL.replace(/\/api\/?$/, '');
+
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
+  baseURL: SERVER_URL,
   withCredentials: true,
 });
 

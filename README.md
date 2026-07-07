@@ -1,4 +1,4 @@
-# SkyMart ERP - Frontend
+# SkyMart ERP - Inventory & Sales Management System Frontend
 
 SkyMart ERP is a comprehensive Enterprise Resource Planning (ERP) web application designed to streamline business operations. The frontend provides a modern, intuitive, and responsive dashboard that empowers users to manage inventory, process sales, and monitor business analytics. 
 
@@ -54,5 +54,9 @@ Follow these steps to get the frontend application running on your local machine
    Open your browser and navigate to `http://localhost:5173` to access the SkyMart ERP dashboard.
 
 ---
+
+## Author
+**Md. Ashikuzzaman Moon**  
+Full Stack Web Developer
 
 

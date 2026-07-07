@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { getProducts, deleteProduct } from '../features/product/productApi';
 import { useAuth } from '../context/AuthContext';
 import { useDebounce } from '../hooks/useDebounce'; // Assuming this exists or I will create it
+import { SERVER_URL } from '../lib/axios';
 
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -154,7 +155,7 @@ const Products = () => {
                   <TableCell>
                     {product.image ? (
                       <img
-                        src={product.image.startsWith('http') ? product.image : `http://localhost:5000${product.image}`}
+                        src={product.image.startsWith('http') ? product.image : `${SERVER_URL}${product.image}`}
                         alt={product.name}
                         className="h-10 w-10 rounded-md object-cover"
                       />

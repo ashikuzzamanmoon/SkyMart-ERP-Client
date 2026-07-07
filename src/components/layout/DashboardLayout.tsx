@@ -19,26 +19,29 @@ const DashboardLayout = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col md:flex-row">
-      {/* Mobile Header */}
-      <div className="md:hidden bg-card shadow-sm p-4 flex justify-between items-center border-b">
-        <h1 className="text-xl font-bold text-primary">SkyMart ERP</h1>
-        <button onClick={toggleSidebar} className="text-muted-foreground hover:text-foreground">
-          <Menu />
-        </button>
-      </div>
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="md:hidden fixed inset-0 z-40 bg-black/50 transition-opacity" 
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
 
-      {/* Sidebar */}
+      {/* Sidebar / Drawer */}
       <aside
-        className={`${
-          isSidebarOpen ? 'block' : 'hidden'
-        } md:block w-full ${isSidebarExpanded ? 'md:w-64' : 'md:w-20'} bg-card border-r border-border h-auto md:h-screen sticky top-0 flex-shrink-0 z-10 shadow-sm md:shadow-none transition-all duration-300 ease-in-out`}
+        className={`
+          fixed inset-y-0 left-0 z-50 w-64 bg-card border-r shadow-lg transform transition-transform duration-300 ease-in-out flex flex-col
+          md:sticky md:top-0 md:h-screen md:shadow-none md:transform-none md:flex-shrink-0 md:z-10
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+          ${isSidebarExpanded ? 'md:w-64' : 'md:w-20'}
+        `}
       >
-        <div className={`p-6 hidden md:flex items-center ${isSidebarExpanded ? 'justify-start' : 'justify-center'}`}>
+        <div className={`p-6 flex items-center ${isSidebarExpanded ? 'justify-start' : 'justify-center'}`}>
           <h1 className="text-2xl font-bold text-primary truncate transition-all duration-300">
             {isSidebarExpanded ? 'SkyMart ERP' : 'SM'}
           </h1>
         </div>
-        <nav className="mt-2 md:mt-2 px-4">
+        <nav className="mt-2 md:mt-2 px-4 flex-1">
           <ul className="space-y-2">
             {navLinks
               .filter((link) => user && link.roles.includes(user.role))
@@ -68,12 +71,30 @@ const DashboardLayout = () => {
               })}
           </ul>
         </nav>
+
+        {/* Mobile User Actions inside Drawer */}
+        <div className="p-4 border-t md:hidden flex flex-col gap-4 bg-muted/20">
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-foreground">{user?.name}</span>
+              <span className="text-xs text-muted-foreground capitalize">{user?.role}</span>
+            </div>
+            <ThemeToggle />
+          </div>
+          <button
+            onClick={logout}
+            className="flex items-center justify-center gap-2 w-full text-red-500 hover:text-red-700 transition-colors p-2 rounded-md hover:bg-red-50 bg-red-50/50"
+          >
+            <LogOut className="w-5 h-5" />
+            <span className="font-medium">Logout</span>
+          </button>
+        </div>
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
         {/* Topbar */}
-        <header className="bg-card shadow-sm border-b px-8 py-4 flex justify-between items-center sticky top-0 z-10 transition-all duration-300">
+        <header className="bg-card shadow-sm border-b px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-10 transition-all duration-300">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
@@ -82,25 +103,38 @@ const DashboardLayout = () => {
             >
               <Menu className="w-5 h-5" />
             </button>
+            <h1 className="md:hidden text-xl font-bold text-primary">SkyMart ERP</h1>
           </div>
+          
           <div className="flex items-center gap-6">
-            <ThemeToggle />
-            <div className="text-right">
-              <p className="text-sm font-semibold text-foreground">{user?.name}</p>
-              <p className="text-xs text-muted-foreground capitalize">{user?.role}</p>
+            {/* Desktop User Actions */}
+            <div className="hidden md:flex items-center gap-6">
+              <ThemeToggle />
+              <div className="text-right">
+                <p className="text-sm font-semibold text-foreground">{user?.name}</p>
+                <p className="text-xs text-muted-foreground capitalize">{user?.role}</p>
+              </div>
+              <button
+                onClick={logout}
+                className="flex items-center gap-2 text-red-500 hover:text-red-700 transition-colors p-2 rounded-md hover:bg-red-50"
+                title="Logout"
+              >
+                <LogOut className="w-5 h-5" />
+              </button>
             </div>
-            <button
-              onClick={logout}
-              className="flex items-center gap-2 text-red-500 hover:text-red-700 transition-colors p-2 rounded-md hover:bg-red-50"
-              title="Logout"
+
+            {/* Mobile Hamburger */}
+            <button 
+              onClick={toggleSidebar} 
+              className="md:hidden text-muted-foreground hover:text-foreground p-2 rounded-md hover:bg-muted transition-colors"
             >
-              <LogOut className="w-5 h-5" />
+              <Menu className="w-6 h-6" />
             </button>
           </div>
         </header>
 
         {/* Page Content */}
-        <div className="p-8 flex-1">
+        <div className="p-4 md:p-8 flex-1">
           <Outlet />
         </div>
       </main>

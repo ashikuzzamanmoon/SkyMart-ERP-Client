@@ -81,38 +81,40 @@ const Sales = () => {
             </div>
           ) : (
             <>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Customer</TableHead>
-                    <TableHead>Items</TableHead>
-                    <TableHead>Created By</TableHead>
-                    <TableHead className="text-right">Grand Total</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {sales.map((sale: any) => (
-                    <TableRow key={sale._id}>
-                      <TableCell>
-                        {new Date(sale.createdAt).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell className="font-medium">
-                        {sale.customer?.name || 'Unknown'}
-                      </TableCell>
-                      <TableCell>
-                        {sale.items?.length || 0} items
-                      </TableCell>
-                      <TableCell>
-                        {sale.createdBy?.name || 'System'}
-                      </TableCell>
-                      <TableCell className="text-right font-bold text-blue-600">
-                        ৳{sale.grandTotal?.toFixed(2) || '0.00'}
-                      </TableCell>
+              <div className="overflow-x-auto w-full">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Date</TableHead>
+                      <TableHead>Customer</TableHead>
+                      <TableHead>Items</TableHead>
+                      <TableHead>Created By</TableHead>
+                      <TableHead className="text-right">Grand Total</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {sales.map((sale: any) => (
+                      <TableRow key={sale._id}>
+                        <TableCell>
+                          {new Date(sale.createdAt).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell className="font-medium">
+                          {sale.customer?.name || 'Unknown'}
+                        </TableCell>
+                        <TableCell>
+                          {sale.items?.length || 0} items
+                        </TableCell>
+                        <TableCell>
+                          {sale.createdBy?.name || 'System'}
+                        </TableCell>
+                        <TableCell className="text-right font-bold text-blue-600">
+                          ৳{sale.grandTotal?.toFixed(2) || '0.00'}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
 
               {meta.totalPages > 1 && (
                 <div className="mt-4 flex justify-end">

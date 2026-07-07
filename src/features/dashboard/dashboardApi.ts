@@ -4,7 +4,7 @@ export interface LowStockProduct {
   _id: string;
   name: string;
   sku: string;
-  stock: number;
+  stockQuantity: number;
 }
 
 export interface DashboardStats {

@@ -139,7 +139,7 @@ const Dashboard = () => {
                     <TableCell>{product.sku}</TableCell>
                     <TableCell className="text-right">
                       <Badge variant="destructive" className="bg-red-500 text-white hover:bg-red-600">
-                        {product.stock} left
+                        {product.stockQuantity} left
                       </Badge>
                     </TableCell>
                   </TableRow>
